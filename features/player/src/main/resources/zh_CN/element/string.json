@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "playback_shared_desc",
+      "value": "shared_desc"
+    },
+    {
+      "name": "lrc_empty_placeholder",
+      "value": "此歌曲为纯音乐，请欣赏"
+    }
+  ]
+}

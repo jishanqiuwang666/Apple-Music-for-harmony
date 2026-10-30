@@ -1,0 +1,9 @@
+{
+  "routerMap": [
+    {
+      "name": "songPage",
+      "pageSourceFile": "src/main/ets/view/SongPage.ets",
+      "buildFunction": "SongPageBuilder"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "module": {
+    "name": "musichomewatchsample",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "MusichomeWatchAbility",
+    "deviceTypes": [
+      "wearable",
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "MusichomeWatchAbility",
+        "srcEntry": "./ets/watchability/WatchAbility.ets",
+        "description": "$string:WatchAbility_desc",
+        "icon": "$media:ic_music_icon",
+        "label": "$string:WatchAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "ohos.want.action.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "MusichomeWatchBackupAbility",
+        "srcEntry": "./ets/watchbackupability/WatchBackupAbility.ets",
+        "type": "backup",
+        "exported": false,
+        "metadata": [
+          {
+            "name": "ohos.extension.backup",
+            "resource": "$profile:backup_config"
+          }
+        ],
+      }
+    ]
+  }
+}

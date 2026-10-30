@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "WatchAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "WatchAbility_label",
+      "value": "MusicHome"
+    },
+    {
+      "name": "reason_distributed",
+      "value": "用于在手机与手表间传输音乐文件"
+    }
+  ]
+}

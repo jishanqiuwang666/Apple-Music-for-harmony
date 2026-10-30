@@ -1,0 +1,60 @@
+{
+  "routerMap": [
+    {
+      "name": "ArtistHome",
+      "pageSourceFile": "src/main/ets/view/ArtistsPage.ets",
+      "buildFunction": "ArtistHomePageBuilder",
+      "data": {
+        "description": "Artists tab home page (NavDestination for shared transitions)"
+      }
+    },
+    {
+      "name": "SearchHome",
+      "pageSourceFile": "src/main/ets/view/SearchPage.ets",
+      "buildFunction": "SearchHomePageBuilder",
+      "data": {
+        "description": "Search tab home page (NavDestination for shared transitions)"
+      }
+    },
+    {
+      "name": "ArtistDetail",
+      "pageSourceFile": "src/main/ets/view/ArtistDetailPage.ets",
+      "buildFunction": "ArtistDetailPageBuilder",
+      "data": {
+        "description": "Artist detail with album grid"
+      }
+    },
+    {
+      "name": "AlbumHome",
+      "pageSourceFile": "src/main/ets/view/AlbumsPage.ets",
+      "buildFunction": "AlbumHomePageBuilder",
+      "data": {
+        "description": "Albums tab home page (NavDestination for shared transitions)"
+      }
+    },
+    {
+      "name": "AlbumDetail",
+      "pageSourceFile": "src/main/ets/view/AlbumDetailPage.ets",
+      "buildFunction": "AlbumDetailPageBuilder",
+      "data": {
+        "description": "Album detail with track list"
+      }
+    },
+    {
+      "name": "PlaylistHome",
+      "pageSourceFile": "src/main/ets/view/PlaylistsPage.ets",
+      "buildFunction": "PlaylistHomePageBuilder",
+      "data": {
+        "description": "Apple Music library playlists tab home"
+      }
+    },
+    {
+      "name": "PlaylistDetail",
+      "pageSourceFile": "src/main/ets/view/PlaylistDetailPage.ets",
+      "buildFunction": "PlaylistDetailPageBuilder",
+      "data": {
+        "description": "Playlist detail with track list"
+      }
+    }
+  ]
+}

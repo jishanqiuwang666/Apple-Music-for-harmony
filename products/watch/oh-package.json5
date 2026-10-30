@@ -1,0 +1,14 @@
+{
+  "name": "watch",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "musicbasic": "file:../../common/musicbasic",
+    "player": "file:../../features/player",
+    "library": "file:../../features/library",
+    
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "color": [
+    {
+      "name": "library_bg",
+      "value": "#000000"
+    },
+    {
+      "name": "library_bg_top",
+      "value": "#1A1B21"
+    },
+    {
+      "name": "library_bg_bottom",
+      "value": "#08080B"
+    },
+    {
+      "name": "library_tool_bg",
+      "value": "#4DFFFFFF"
+    },
+    {
+      "name": "library_card_bg",
+      "value": "#1C1C1E"
+    },
+    {
+      "name": "library_text_primary",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "library_text_secondary",
+      "value": "#99FFFFFF"
+    },
+    {
+      "name": "library_accent",
+      "value": "#317AF7"
+    },
+    {
+      "name": "library_cover_placeholder",
+      "value": "#2C2C2E"
+    },
+    {
+      "name": "library_divider",
+      "value": "#1AFFFFFF"
+    },
+    {
+      "name": "library_resume",
+      "value": "#FFFFC04D"
+    },
+    {
+      "name": "library_resume_text",
+      "value": "#FFFFC04D"
+    }
+  ]
+}

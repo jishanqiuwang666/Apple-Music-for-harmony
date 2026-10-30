@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "multi device"
+    },
+    {
+      "name": "reason_background",
+      "value": "Allow applications to use the ability to run in the background while playing music scenes."
+    },
+    {
+      "name": "placeholder_tab_not_implemented",
+      "value": "This feature is not available yet"
+    },
+    {
+      "name": "tab_artists",
+      "value": "艺人"
+    },
+    {
+      "name": "tab_albums",
+      "value": "专辑"
+    },
+    {
+      "name": "tab_all_songs",
+      "value": "歌曲"
+    },
+    {
+      "name": "tab_playlists",
+      "value": "歌单"
+    },
+    {
+      "name": "widget_music_display_name",
+      "value": "音乐控制"
+    },
+    {
+      "name": "widget_music_desc",
+      "value": "快速播放、暂停和切歌"
+    },
+    {
+      "name": "tab_search",
+      "value": ""
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "forms": [
+    {
+      "name": "MusicWidget",
+      "displayName": "$string:widget_music_display_name",
+      "description": "$string:widget_music_desc",
+      "src": "./ets/widget/WidgetCard.ets",
+      "uiSyntax": "arkts",
+      "isDefault": false,
+      "supportDimensions": [
+        "2*2"
+      ],
+      "defaultDimension": "2*2",
+      "updateEnabled": false,
+      "isDynamic": true
+    }
+  ]
+}

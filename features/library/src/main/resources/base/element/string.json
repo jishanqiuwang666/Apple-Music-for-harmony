@@ -1,0 +1,92 @@
+{
+  "string": [
+    {
+      "name": "musiclist_shared_desc",
+      "value": "shared_desc"
+    },
+    {
+      "name": "watch_playlist_section_title",
+      "value": "Outdoor running"
+    },
+    {
+      "name": "watch_playlist_card_title_party",
+      "value": "Party Time"
+    },
+    {
+      "name": "watch_playlist_card_title_xmas",
+      "value": "Christmas"
+    },
+    {
+      "name": "watch_playlist_play_count_one",
+      "value": "892k plays"
+    },
+    {
+      "name": "watch_playlist_play_count_two",
+      "value": "826k plays"
+    },
+    {
+      "name": "watch_song_list_default_playlist",
+      "value": "Party Time"
+    },
+    {
+      "name": "watch_song_count_suffix",
+      "value": " songs"
+    },
+    {
+      "name": "library_no_music",
+      "value": "资料库为空"
+    },
+    {
+      "name": "library_no_music_hint",
+      "value": "登录 Apple Music 账号后，你的资料库会自动同步到这里"
+    },
+    {
+      "name": "library_sync_library",
+      "value": "同步资料库"
+    },
+    {
+      "name": "library_login_apple_music",
+      "value": "登录 Apple Music"
+    },
+    {
+      "name": "library_sync_signing_in",
+      "value": "正在登录 Apple Music…"
+    },
+    {
+      "name": "library_sync_in_progress",
+      "value": "正在同步资料库…"
+    },
+    {
+      "name": "library_play_all",
+      "value": "播放全部"
+    },
+    {
+      "name": "library_search_hint",
+      "value": "搜索歌曲、艺人、专辑"
+    },
+    {
+      "name": "library_album",
+      "value": "专辑"
+    },
+    {
+      "name": "library_singer",
+      "value": "歌手"
+    },
+    {
+      "name": "library_song_count",
+      "value": "%d 首"
+    },
+    {
+      "name": "library_album_count",
+      "value": "%d 张专辑"
+    },
+    {
+      "name": "library_songs_of_artist",
+      "value": "全部 %d 首"
+    },
+    {
+      "name": "library_empty_artist",
+      "value": "暂无歌曲"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "license": "",
+  "devDependencies": {},
+  "author": "",
+  "name": "default",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "version": "1.0.0",
+  "dependencies": {
+    "musicbasic": "file:../../common/musicbasic",
+    "library": "file:../../features/library",
+    "player": "file:../../features/player",
+    
+  }
+}

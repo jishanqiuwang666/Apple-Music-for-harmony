@@ -1,0 +1,83 @@
+{
+  "app": {
+    // 签名配置不在仓库里：用 DevEco 打开工程 → Project Structure → Signing Configs
+    // → 勾「Automatically generate signature」即可；命令行构建则把本地签名文件
+    // build-profile.signing.local.json5 放回工程根目录（tools/apple-music/build.sh 会自动套用）。
+    "products": [
+      {
+        "name": "default",
+        "compatibleSdkVersion": "26.0.0",
+        "targetSdkVersion": "26.0.0",
+        "runtimeOS": "HarmonyOS",
+        "buildOption": {
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true
+          }
+        }
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug"
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "musichomesample",
+      "srcPath": "./products/default",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "library",
+      "srcPath": "./features/library",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "musicbasic",
+      "srcPath": "./common/musicbasic"
+    },
+    {
+      "name": "musichomewatchsample",
+      "srcPath": "./products/watch",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "player",
+      "srcPath": "./features/player",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+  ]
+}

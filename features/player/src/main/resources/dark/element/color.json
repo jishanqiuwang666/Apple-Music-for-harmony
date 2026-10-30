@@ -1,0 +1,84 @@
+{
+  "color": [
+    {
+      "name": "singer",
+      "value": "#99FFFFFF"
+    },
+    {
+      "name": "song_name",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "player_background",
+      "value": "#1C1C1E"
+    },
+    {
+      "name": "slider_block",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "slider_select",
+      "value": "#DBFFFFFF"
+    },
+    {
+      "name": "slider_track",
+      "value": "#33FFFFFF"
+    },
+    {
+      "name": "play_text_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "select_swiper",
+      "value": "#33FFFFFF"
+    },
+    {
+      "name": "player_text_primary",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "lrc_stars",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "lrc_mask_transparent",
+      "value": "#00000000"
+    },
+    {
+      "name": "lrc_mask_white",
+      "value": "#000000"
+    },
+    {
+      "name": "lrc_mask_semi",
+      "value": "#80000000"
+    },
+    {
+      "name": "info_scrim_top",
+      "value": "#000000"
+    },
+    {
+      "name": "info_scrim_mid",
+      "value": "#000000"
+    },
+    {
+      "name": "info_scrim_bottom",
+      "value": "#000000"
+    },
+    {
+      "name": "font_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "play_singer_color",
+      "value": "#99FFFFFF"
+    },
+    {
+      "name": "mini_bar_icon",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "mini_bar_progress",
+      "value": "#DBFFFFFF"
+    }
+  ]
+}

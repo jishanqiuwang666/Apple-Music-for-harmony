@@ -1,0 +1,76 @@
+{
+  "color": [
+    {
+      "name": "watch_page_background",
+      "value": "#000000"
+    },
+    {
+      "name": "watch_text_on_dark_primary",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "watch_text_secondary",
+      "value": "#999999"
+    },
+    {
+      "name": "watch_playlist_card_maroon",
+      "value": "#2E1F26"
+    },
+    {
+      "name": "watch_playlist_card_blue",
+      "value": "#1B262C"
+    },
+    {
+      "name": "watch_song_row_capsule",
+      "value": "#262626"
+    },
+    {
+      "name": "library_bg",
+      "value": "#FFFFFFFF"
+    },
+    {
+      "name": "library_bg_top",
+      "value": "#FFFFFFFF"
+    },
+    {
+      "name": "library_bg_bottom",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "library_tool_bg",
+      "value": "#4D000000"
+    },
+    {
+      "name": "library_card_bg",
+      "value": "#F2F2F2"
+    },
+    {
+      "name": "library_text_primary",
+      "value": "#182431"
+    },
+    {
+      "name": "library_text_secondary",
+      "value": "#99182431"
+    },
+    {
+      "name": "library_accent",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "library_cover_placeholder",
+      "value": "#E5E5E5"
+    },
+    {
+      "name": "library_divider",
+      "value": "#1A000000"
+    },
+    {
+      "name": "library_resume",
+      "value": "#FFF0A020"
+    },
+    {
+      "name": "library_resume_text",
+      "value": "#FFC77E00"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "multi device"
+    },
+    {
+      "name": "reason_background",
+      "value": "Allow applications to use the ability to run in the background while playing music scenes."
+    },
+    {
+      "name": "tab_home",
+      "value": "Home"
+    },
+    {
+      "name": "tab_music_hall",
+      "value": "Music Hall"
+    },
+    {
+      "name": "tab_cafe_listen",
+      "value": "Cafe"
+    },
+    {
+      "name": "tab_mine",
+      "value": "Mine"
+    },
+    {
+      "name": "placeholder_tab_not_implemented",
+      "value": "This feature is not available yet"
+    }
+  ]
+}

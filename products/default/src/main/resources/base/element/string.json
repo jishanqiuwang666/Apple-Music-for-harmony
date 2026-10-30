@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Harmony Music"
+    },
+    {
+      "name": "reason_background",
+      "value": "Allow applications to use the ability to run in the background while playing music scenes."
+    },
+    {
+      "name": "tab_artists",
+      "value": "艺人"
+    },
+    {
+      "name": "tab_albums",
+      "value": "专辑"
+    },
+    {
+      "name": "tab_all_songs",
+      "value": "歌曲"
+    },
+    {
+      "name": "tab_playlists",
+      "value": "歌单"
+    },
+    {
+      "name": "reason_distributed",
+      "value": "用于在手机与手表间传输音乐文件"
+    },
+    {
+      "name": "reason_internet",
+      "value": "访问 Apple Music 接口需要网络权限"
+    },
+    {
+      "name": "widget_music_display_name",
+      "value": "音乐控制"
+    },
+    {
+      "name": "widget_music_desc",
+      "value": "快速播放、暂停和切歌"
+    },
+    {
+      "name": "tab_search",
+      "value": ""
+    }
+  ]
+}
