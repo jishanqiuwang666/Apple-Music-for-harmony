@@ -107,8 +107,8 @@ HLS 分片 `@offset` 省略时要「接着上一段」；`senc` 的 IV 长度不
 <td align="center"><img width="250" src="docs/media/screenshots/01-lyrics.png"><br><sub><b>歌词页</b>：只有当前行是白的，其余压暗</sub></td>
 </tr>
 <tr>
-<td align="center"><img width="250" src="docs/media/screenshots/07-search.png"><br><sub><b>搜索</b>：只搜本机资料库；未加入资料库的专辑也能点开就听</sub></td>
 <td align="center"></td>
+<td align="center"><img width="250" src="docs/media/screenshots/07-search.png"><br><sub><b>搜索</b>：只搜本机资料库；未加入资料库的专辑也能点开就听</sub></td>
 <td align="center"></td>
 </tr>
 </table>
