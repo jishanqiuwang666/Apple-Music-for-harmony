@@ -17,6 +17,8 @@
 - [它解决什么问题](#它解决什么问题)
 - [核心：鸿蒙上怎么听 Apple Music](#核心鸿蒙上怎么听-apple-music)
 - [我比较得意的：歌词效果](#我比较得意的歌词效果)
+- [界面](#界面)
+- [代码地图（想改的话从这里进）](#代码地图想改的话从这里进)
 - [使用指南](#使用指南)
 - [构建](#构建)
 - [仓库结构](#仓库结构)
@@ -75,6 +77,11 @@ HLS 分片 `@offset` 省略时要「接着上一段」；`senc` 的 IV 长度不
 
 （细节见 [`docs/歌词效果实现.md`](docs/歌词效果实现.md)）
 
+![歌词逐字动效（实机录制）](docs/media/lyrics-demo.gif)
+
+> 上面这段是**真机实拍**（手机录屏后逐帧摆正、压成 GIF）。想看清细节可以看
+> [逐帧校正后的 MP4](docs/media/lyrics-demo.mp4)（720×1290，7.6 秒）。
+
 - **逐字填充**：每个字有自己的时间窗，白字层按实测宽度从左往右长出来，字与字首尾相接，填满瞬间轻弹一下。
 - **柔和边缘**：ArkUI 没有 alpha 渐变遮罩，用「多层同内容、宽度递增、透明度 `1/j` 递减」逼近 ——
   这个 `1/j` 是按叠加公式**反解**出来的，凭感觉调一定出现一条硬线。
@@ -82,6 +89,48 @@ HLS 分片 `@offset` 省略时要「接着上一段」；`senc` 的 IV 长度不
   换行时下一发弹簧动画；动画被打断会从当前渲染值继续，结构上不可能「找补」。
 - **景深**：只给离焦点近的几行加模糊，其余靠透明度压暗 —— 逐项 `blur()` 是渲染最贵的属性。
 - 中文/日文/英文按「汉字一字、拉丁整词」切分；译文单独一行，字号与透明度分层。
+
+## 界面
+
+五个板块（艺人 / 专辑 / 歌曲 / 歌单）+ 一个全局搜索按钮，底部是 HDS 悬浮页签栏，右下角那颗圆封面是播放条
+（左滑展开成全屏播放页）。下面都是真机截图：
+
+<table>
+<tr>
+<td align="center"><img width="250" src="docs/media/screenshots/03-artists.png"><br><sub><b>艺人</b>：收藏的艺人横排（可长按拖动排序）+ 按流派分组</sub></td>
+<td align="center"><img width="250" src="docs/media/screenshots/05-albums.png"><br><sub><b>专辑</b>：收藏的专辑置顶（与「全部专辑」去重）</sub></td>
+<td align="center"><img width="250" src="docs/media/screenshots/06-playlists.png"><br><sub><b>歌单</b>：Apple 资料库里的自建歌单</sub></td>
+</tr>
+<tr>
+<td align="center"><img width="250" src="docs/media/screenshots/04-artist-detail.png"><br><sub><b>艺人详情</b>：头像 + 一键随机播放 + 收藏 + 专辑网格</sub></td>
+<td align="center"><img width="250" src="docs/media/screenshots/02-player.png"><br><sub><b>全屏播放页</b>：封面从播放条那颗「生长」上来</sub></td>
+<td align="center"><img width="250" src="docs/media/screenshots/01-lyrics.png"><br><sub><b>歌词页</b>：只有当前行是白的，其余压暗</sub></td>
+</tr>
+<tr>
+<td align="center"><img width="250" src="docs/media/screenshots/07-search.png"><br><sub><b>搜索</b>：只搜本机资料库；未加入资料库的专辑也能点开就听</sub></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</table>
+
+## 代码地图（想改的话从这里进）
+
+完整版见 [`docs/板块与代码结构.md`](docs/板块与代码结构.md)（含「想改某处该动哪个文件」的对照表与踩坑清单）。最小版：
+
+| 板块 | 首页 | 数据来源 |
+|---|---|---|
+| 艺人 | `features/library/.../view/ArtistsPage.ets` → `ArtistDetailPage.ets` | `/v1/me/library/artists` + 资料库歌曲聚合 |
+| 专辑 | `AlbumsPage.ets` → `AlbumDetailPage.ets` | `/v1/me/library/albums`（未入库的走目录接口） |
+| 歌曲 | `AllSongsPage.ets` | `songs` 表 |
+| 歌单 | `PlaylistsPage.ets` → `PlaylistDetailPage.ets` | `/v1/me/library/playlists` |
+| 搜索 | `SearchPage.ets` | 本机内存镜像 + 目录 API |
+
+播放层不在任何 tab 里：`features/player/.../view/Player.ets`（底部播放条）→ `PhonePlaybackPage.ets`（全屏页）
+→ `AppleLyricsView.ets`（歌词），核心是 `model/MediaService.ets`（应用级单例）。
+外壳在 `products/default/.../pages/Index.ets`：5 个页签 + **每个 tab 一条独立导航栈** + 唯一的背景流光层。
+
+**新增一个板块需要动 4 处**：`Index.ets` 加 `TabContent`、新建页面（根节点是 `HdsNavDestination`）、
+`router_map.json` 注册路由、给这个 tab 一条自己的 `NavPathStack`。
 
 ## 使用指南
 
@@ -125,7 +174,7 @@ bash tools/apple-music/build.sh musichomesample public
 
 | 操作 | 位置 |
 |---|---|
-| 四个板块 | 底部悬浮页签：艺人 / 专辑 / 歌曲 / 歌单 |
+| 四个板块 + 搜索 | 底部悬浮页签：艺人 / 专辑 / 歌曲 / 歌单；搜索是页签栏里那颗放大镜 |
 | 播放 / 暂停 | 点底部播放条（折叠态点封面） |
 | 展开播放页 | 向左滑播放条（封面「生长」成全屏播放页） |
 | 歌词 | 播放页往下滑 / 点歌词按钮；点某一行可跳转 |
@@ -145,12 +194,16 @@ bash tools/apple-music/build.sh musichomesample public
 ## 仓库结构
 
 ```
-common/musicbasic/     基础设施：Apple API、Widevine 解密、RDB、Preferences、全局状态
-features/library/      艺人 / 专辑 / 歌曲 / 歌单 / 搜索 / 设置抽屉 / 登录页
-features/player/       播放条、全屏播放页、歌词视图
-products/default/      手机端外壳（HdsTabs + 每个 tab 独立导航栈 + 背景流光）
+common/musicbasic/     能力层：Apple API、Widevine 解密、RDB、内存镜像、全局状态、工具
+features/library/      五个板块的页面（艺人 / 专辑 / 歌曲 / 歌单 / 搜索）+ 登录页 + 设置抽屉
+features/player/       播放条、全屏播放页、歌词视图、播放核心（MediaService）
+products/default/      手机端外壳（HdsTabs + 每个 tab 独立导航栈 + 背景流光 + 播放层浮层）
 tools/apple-music/     构建与部署脚本
 docs/                  技术文档与踩坑记录
+  ├─ 板块与代码结构.md          界面 ←→ 代码对照表、二次开发落点、踩坑清单
+  ├─ 技术实现-AppleMusic音源.md 取流 / 解密 / 播放全链路
+  ├─ 歌词效果实现.md            逐字填充、自持滚动、景深
+  └─ media/                     README 用的动效 GIF/MP4 与真机截图
 ```
 
 ## 已知问题与边界
@@ -162,6 +215,8 @@ docs/                  技术文档与踩坑记录
 - **未适配平板 / 折叠屏 / 手表**：只按手机竖屏调过。
 - **没有多语言**：界面是中文。
 - **依赖第三方凭据**：WVD 不是本项目能提供的东西。
+- **README 里的动效是手机实拍**：鸿蒙没有可脚本化的录屏能力（`screenrecord` 不存在、相册目录 shell 读不到），
+  所以那段 GIF 是先用手机录屏、再逐帧摆正（消掉手持倾斜与梯形畸变）压出来的，画质不如屏幕录制。
 
 ## 许可与声明
 
