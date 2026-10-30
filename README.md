@@ -98,7 +98,7 @@ HLS 分片 `@offset` 省略时要「接着上一段」；`senc` 的 IV 长度不
 <table>
 <tr>
 <td align="center"><img width="250" src="docs/media/screenshots/03-artists.png"><br><sub><b>艺人</b>：收藏的艺人横排（可长按拖动排序）+ 按流派分组</sub></td>
-<td align="center"><img width="250" src="docs/media/screenshots/05-albums.png"><br><sub><b>专辑</b>：收藏的专辑置顶（与「全部专辑」去重）</sub></td>
+<td align="center"><img width="250" src="docs/media/screenshots/05-albums.png"><br><sub><b>专辑</b>：资料库全部专辑；收藏的会置顶并与列表去重</sub></td>
 <td align="center"><img width="250" src="docs/media/screenshots/06-playlists.png"><br><sub><b>歌单</b>：Apple 资料库里的自建歌单</sub></td>
 </tr>
 <tr>
