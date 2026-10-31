@@ -39,7 +39,6 @@ export { TabItem } from './src/main/ets/model/TabItem';
 export { SongRow } from './src/main/ets/data/SongRow';
 export { PlaylistRow } from './src/main/ets/data/PlaylistRow';
 export { RecommendFeedKind, RecommendFeedRow } from './src/main/ets/data/RecommendFeedRow';
-export { MusicMemoryStore } from './src/main/ets/db/MusicMemoryStore';
 export { MusicDbApi } from './src/main/ets/util/MusicDbApi';
 
 // Library RDB（Apple Music 音源，本地导入已移除）

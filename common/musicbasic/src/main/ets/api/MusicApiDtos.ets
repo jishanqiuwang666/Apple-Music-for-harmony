@@ -110,7 +110,7 @@ export class RecommendCardApiDto {
   /** Index into a fixed color or style palette. */
   public paletteIndex: number = 0;
   /** Card background image resource. */
-  public backgroundImage: Resource = $r('app.media.ic_avatar1');
+  public backgroundImage: Resource = $r('app.media.ic_good');
 }
 
 /**

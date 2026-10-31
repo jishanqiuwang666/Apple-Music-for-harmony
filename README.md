@@ -19,6 +19,7 @@
 - [我比较得意的：歌词效果](#我比较得意的歌词效果)
 - [界面](#界面)
 - [代码地图（想改的话从这里进）](#代码地图想改的话从这里进)
+- [直接装（预编译包）](#直接装预编译包)
 - [使用指南](#使用指南)
 - [构建](#构建)
 - [仓库结构](#仓库结构)
@@ -32,7 +33,8 @@
 鸿蒙设备上一直没有 Apple Music：
 
 - 没有官方鸿蒙版；
-- 鸿蒙 NEXT 不能装 Android APK；
+- 鸿蒙 NEXT 不能直接装 Android APK。用「卓易通」这类安卓兼容层确实能把安卓版 Apple Music 装上，
+  但**音量不跟系统走、性能也明显打折**（作者实测），当不了日常播放器；
 - 网页版在 HarmonyOS 里**放不出声音** —— 网页播放依赖 EME，而鸿蒙 ArkWeb 只有
   `com.wiseplay.drm` 与 ClearKey，**没有 Widevine / PlayReady / FairPlay**（实测）。
 
@@ -132,6 +134,45 @@ HLS 分片 `@offset` 省略时要「接着上一段」；`senc` 的 IV 长度不
 **新增一个板块需要动 4 处**：`Index.ets` 加 `TabContent`、新建页面（根节点是 `HdsNavDestination`）、
 `router_map.json` 注册路由、给这个 tab 一条自己的 `NavPathStack`。
 
+## 直接装（预编译包）
+
+不想自己编译的话，仓库里带了一份**预编译的未签名包**：
+
+`dist/musichome-1.0.0-public-unsigned.hap`（约 1.6 MB，release 构建，1.0.0 / `com.sample.musichome`）
+
+鸿蒙装应用**必须签名**，而签名和华为账号、设备绑定 —— 别人签的包装不到你手机上，这一步只能自己做：
+
+**A. 用 DevEco 直接装（最省事）**
+
+1. clone 本仓库，DevEco Studio 打开工程；
+2. `Project Structure → Signing Configs` → 勾「Automatically generate signature」（要登录华为账号）；
+3. 手机开「开发者模式 + USB 调试」，点运行。
+
+**B. 只装现成包（给 HAP 重新签名）**
+
+证书 / Profile 用 DevEco 自动签名生成（一般在 `~/.ohos/config/` 下的 `*.p12` / `*.cer` / `*.p7b`），
+再用 SDK 自带的签名工具重签，然后 `hdc install`：
+
+```bash
+# 路径按你的 DevEco 安装位置、以及 ~/.ohos/config 里的实际文件名替换
+java -jar /Applications/DevEco-Studio.app/Contents/sdk/default/openharmony/toolchains/lib/hap-sign-tool.jar \
+  sign-app -mode localSign -signAlg SHA256withECDSA \
+  -keyAlias "debugKey" -keystoreFile "xxx.p12" -keystorePwd "***" -keyPwd "***" \
+  -appCertFile "xxx.cer" -profileFile "xxx.p7b" \
+  -inFile dist/musichome-1.0.0-public-unsigned.hap \
+  -outFile musichome-signed.hap
+
+hdc install musichome-signed.hap
+```
+
+**包里有什么、没有什么**（每次发包前 `tools/apple-music/scan-hap-secrets.py` 会自动扫一遍）：
+
+- 有：登录 / 资料库同步 / 取流解密 / 播放 / 歌词 / 界面的完整代码与资源；
+- **没有**：作者的账号、cookie、登录票据、DeepSeek API key、WVD、本机路径，
+  也没有官方 sample 带进来的示例音频与示例封面；
+- 所以装完是**干净的新装**：Apple Music 账号要自己登录，AI 歌词翻译要自己填 key，
+  **WVD 得自己准备**（缺了它只能浏览资料库，一播放就报错）。
+
 ## 使用指南
 
 ### 0. 你需要的
@@ -156,7 +197,8 @@ HLS 分片 `@offset` 省略时要「接着上一段」；`senc` 的 IV 长度不
 # 本地自用（带你自己的 key / WVD / 签名）
 bash tools/apple-music/build.sh musichomesample
 
-# 对外分发（不含任何凭据、不签名）
+# 对外分发（release、不含凭据与示例资源、不签名）→ dist/musichome-<版本>-public-unsigned.hap
+# 就是「直接装」那一节里的包；构建完会自动跑一遍凭据扫描
 bash tools/apple-music/build.sh musichomesample public
 ```
 
@@ -204,6 +246,7 @@ docs/                  技术文档与踩坑记录
   ├─ 技术实现-AppleMusic音源.md 取流 / 解密 / 播放全链路
   ├─ 歌词效果实现.md            逐字填充、自持滚动、景深
   └─ media/                     README 用的动效 GIF/MP4 与真机截图
+dist/                  预编译的未签名分发包（release 构建，不含任何凭据）
 ```
 
 ## 已知问题与边界

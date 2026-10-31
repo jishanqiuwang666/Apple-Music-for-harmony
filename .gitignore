@@ -4,6 +4,8 @@
 /features/*/build/
 /common/*/build/
 *.hap
+# 例外：分发用的预编译包要进仓库
+!/dist/*.hap
 *.hsp
 *.har
 *.app
@@ -48,3 +50,10 @@ common/musicbasic/src/main/ets/apple/widevine/WvdLocal.ets
 
 # ── 别的项目的文档（dsh-reminder），不属于本仓库 ──
 /docs/superpowers/
+
+# ── macOS 资源分支垃圾（._xxx）──────────────────────────
+._*
+**/._*
+
+# ── hvigor 自动生成的版本信息文件（每次构建都会重写）────────
+**/BuildProfile.ets
