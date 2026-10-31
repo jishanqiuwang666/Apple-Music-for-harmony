@@ -19,6 +19,7 @@ import { CencDecryptor, DecryptStats } from './CencDecryptor';
 import { PbWriter } from './widevine/Pb';
 import { WvdParser, WvdDevice } from './widevine/WvdParser';
 import { WidevineCdm, ContentKey } from './widevine/WidevineCdm';
+import { BUILTIN_WVD_BASE64 } from './widevine/BuiltinWvd';
 
 const TAG: string = 'AppleDownloader';
 
@@ -46,10 +47,31 @@ export class DownloadResult {
 export class AppleDownloader {
   private static cdm: WidevineCdm | null = null;
 
+  /**
+   * 没有 Widevine 设备凭证（WVD）时的统一提示。
+   *
+   * 为什么不直接把底层异常抛给用户：公开分发包的 `WvdLocal.ets` 是空模板，
+   * 走到取密钥那一步时 `Base64Helper.decodeSync('')` 会抛
+   * `Parameter error. The type of Parameter must be string and the length greater than 0.`，
+   * 而缓存层又会把它兜成「该歌曲没有可用的音频资源（可能需要订阅）」——
+   * 用户会以为自己没订阅，实际只是包里没有解密能力。
+   */
+  static readonly MSG_NO_WVD: string =
+    '本安装包不含 Widevine 设备凭证（WVD），无法解密播放；' +
+    '请把自己的 WVD 填进 widevine/WvdLocal.ets 后重新构建';
+
+  /** 本包是否带了可用的 WVD（公开分发包里为空） */
+  static hasWvd(): boolean {
+    return BUILTIN_WVD_BASE64.length > 0;
+  }
+
   /** 懒加载 CDM（内置 Widevine L3 凭证） */
   private static async ensureCdm(): Promise<WidevineCdm> {
     if (AppleDownloader.cdm !== null && AppleDownloader.cdm.isReady()) {
       return AppleDownloader.cdm;
+    }
+    if (!AppleDownloader.hasWvd()) {
+      throw new Error(AppleDownloader.MSG_NO_WVD);
     }
     const dev: WvdDevice = WvdParser.parseBuiltin();
     const cdm = new WidevineCdm(dev);
@@ -95,6 +117,11 @@ export class AppleDownloader {
     const report: DlProgress = onProgress ?? ((s: DlStage, p: number, n: string) => {
     });
     try {
+      // ⓪ 前置检查：包里没带 WVD 时立刻给出可读原因，
+      //    不必先白跑一次 webPlayback + 清单请求再在取密钥处失败。
+      if (!AppleDownloader.hasWvd()) {
+        throw new Error(AppleDownloader.MSG_NO_WVD);
+      }
       // ① 拿播放资产
       report(DlStage.RESOLVING, 2, '解析播放地址');
       const wb: WebPlaybackInfo = await AppleApi.getWebPlayback(songId, isLibrary);

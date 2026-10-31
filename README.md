@@ -138,11 +138,14 @@ HLS 分片 `@offset` 省略时要「接着上一段」；`senc` 的 IV 长度不
 
 不想自己编译的话，仓库里带了一份**预编译的未签名包**：
 
-**[⬇ 下载 musichome-1.0.0-public-unsigned.hap](https://github.com/jishanqiuwang666/Apple-Music-for-harmony/releases/download/v1.0.0/musichome-1.0.0-public-unsigned.hap)**
-（1.7 MB，release 构建；1.0.0 / `com.sample.musichome`，**要求 API 26 / HarmonyOS 7 及以上**）
+**[⬇ 下载 musichome-1.0.1-public-unsigned.hap](https://github.com/jishanqiuwang666/Apple-Music-for-harmony/releases/download/v1.0.1/musichome-1.0.1-public-unsigned.hap)**
+（1.7 MB，release 构建；1.0.1 / `com.sample.musichome`，**要求 API 26 / HarmonyOS 7 及以上**）
 
-仓库里也留了一份同内容文件：[`dist/musichome-1.0.0-public-unsigned.hap`](dist/musichome-1.0.0-public-unsigned.hap)
-（MD5 `33f1cfea3858699aae43e8d775f4c756`）。
+仓库里也留了一份同内容文件：[`dist/musichome-1.0.1-public-unsigned.hap`](dist/musichome-1.0.1-public-unsigned.hap)
+（MD5 `8f7396e2ec98642650f49b6dc8e972f3`）。
+
+> 1.0.1 相对 1.0.0 只有一处改动：没带 WVD 的包在播放时不再报「可能需要订阅」这种误导信息，
+> 而是直接说清「本安装包不含 Widevine 设备凭证，无法解密播放」，并且不再白白跑一次网络请求。
 
 鸿蒙装应用**必须签名**，而签名和华为账号、设备绑定 —— 别人签的包装不到你手机上，这一步只能自己做：
 
@@ -163,7 +166,7 @@ java -jar /Applications/DevEco-Studio.app/Contents/sdk/default/openharmony/toolc
   sign-app -mode localSign -signAlg SHA256withECDSA \
   -keyAlias "debugKey" -keystoreFile "xxx.p12" -keystorePwd "***" -keyPwd "***" \
   -appCertFile "xxx.cer" -profileFile "xxx.p7b" \
-  -inFile dist/musichome-1.0.0-public-unsigned.hap \
+  -inFile dist/musichome-1.0.1-public-unsigned.hap \
   -outFile musichome-signed.hap
 
 hdc install musichome-signed.hap
@@ -178,7 +181,8 @@ hdc install musichome-signed.hap
 - **没有**：作者的账号、cookie、登录票据、DeepSeek API key、WVD、本机路径，
   也没有官方 sample 带进来的示例音频与示例封面；
 - 所以装完是**干净的新装**：Apple Music 账号要自己登录，AI 歌词翻译要自己填 key，
-  **WVD 得自己准备**（缺了它只能浏览资料库，一播放就报错）。
+  **WVD 得自己准备** —— 缺了它只能浏览资料库，点歌会直接提示
+  「本安装包不含 Widevine 设备凭证（WVD），无法解密播放」。
 
 ## 使用指南
 

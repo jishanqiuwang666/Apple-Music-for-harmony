@@ -308,6 +308,10 @@ export class AppleCache {
     // 另一种标识重试一次，调用方不需要知道这首歌是从哪来的。
     const task: Promise<string> = AppleCache.runDownload(songId, isLibrary)
       .catch((err: Error) => {
+        // 「包里没有 WVD」跟标识用错无关，换标识重试只是白跑一次，直接冒泡给调用方
+        if (err.message === AppleDownloader.MSG_NO_WVD) {
+          throw err as Error;
+        }
         Logger.warn(TAG, `ensure: isLibrary=${isLibrary} 失败（${err.message}），改用另一种标识重试 ${songId}`);
         return AppleCache.runDownload(songId, !isLibrary);
       });
