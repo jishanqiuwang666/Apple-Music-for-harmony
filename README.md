@@ -150,8 +150,8 @@ HLS 分片 `@offset` 省略时要「接着上一段」；`senc` 的 IV 长度不
 
 **B. 只装现成包（给 HAP 重新签名）**
 
-证书 / Profile 用 DevEco 自动签名生成（一般在 `~/.ohos/config/` 下的 `*.p12` / `*.cer` / `*.p7b`），
-再用 SDK 自带的签名工具重签，然后 `hdc install`：
+证书 / Profile 用你自己在 DevEco 里生成的那一套（`Build → Generate Key and CSR` 得到的
+`*.p12` / `*.cer` / `*.p7b`，一般在 `~/.ohos/config/` 下），再用 SDK 自带的签名工具重签，然后 `hdc install`：
 
 ```bash
 # 路径按你的 DevEco 安装位置、以及 ~/.ohos/config 里的实际文件名替换
@@ -164,6 +164,9 @@ java -jar /Applications/DevEco-Studio.app/Contents/sdk/default/openharmony/toolc
 
 hdc install musichome-signed.hap
 ```
+
+> 用 DevEco「Automatically generate signature」时，密钥库密码由 DevEco 托管、不落明文，想重签请改用
+> `Build → Generate Key and CSR` 自己建的密钥与 Profile（密码是你自己设的），或者直接走路 A。
 
 **包里有什么、没有什么**（每次发包前 `tools/apple-music/scan-hap-secrets.py` 会自动扫一遍）：
 
