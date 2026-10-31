@@ -138,8 +138,11 @@ HLS 分片 `@offset` 省略时要「接着上一段」；`senc` 的 IV 长度不
 
 不想自己编译的话，仓库里带了一份**预编译的未签名包**：
 
-[`dist/musichome-1.0.0-public-unsigned.hap`](dist/musichome-1.0.0-public-unsigned.hap)
-（约 1.6 MB，release 构建；1.0.0 / `com.sample.musichome`，**要求 API 26 / HarmonyOS 7 及以上**）
+**[⬇ 下载 musichome-1.0.0-public-unsigned.hap](https://github.com/jishanqiuwang666/Apple-Music-for-harmony/releases/download/v1.0.0/musichome-1.0.0-public-unsigned.hap)**
+（1.7 MB，release 构建；1.0.0 / `com.sample.musichome`，**要求 API 26 / HarmonyOS 7 及以上**）
+
+仓库里也留了一份同内容文件：[`dist/musichome-1.0.0-public-unsigned.hap`](dist/musichome-1.0.0-public-unsigned.hap)
+（MD5 `33f1cfea3858699aae43e8d775f4c756`）。
 
 鸿蒙装应用**必须签名**，而签名和华为账号、设备绑定 —— 别人签的包装不到你手机上，这一步只能自己做：
 
